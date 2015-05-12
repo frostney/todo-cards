@@ -17,7 +17,9 @@ var Card = React.createClass({
   },
   getInitialState: function() {
     return {
-      title: this.props.initialTitle
+      title: this.props.initialTitle,
+      touched: true,
+      moveX: 0
     };
   },
   componentWillMount: function() {
@@ -33,17 +35,30 @@ var Card = React.createClass({
         // what is happening!
 
         // gestureState.{x,y}0 will be set to zero now
+
+        this.setState({
+          touched: true
+        });
       },
       onPanResponderMove: (evt, gestureState) => {
         // The most recent move distance is gestureState.move{X,Y}
 
         // The accumulated gesture distance since becoming responder is
         // gestureState.d{x,y}
+
+        this.setState({
+          moveX: gestureState.dx
+        });
       },
       onPanResponderTerminationRequest: (evt, gestureState) => true,
       onPanResponderRelease: (evt, gestureState) => {
         // The user has released all touches while this view is the
         // responder. This typically means a gesture has succeeded
+
+        this.setState({
+          moveX: 0,
+          touched: false
+        });
       },
       onPanResponderTerminate: (evt, gestureState) => {
         // Another component has become the responder, so this gesture
@@ -53,7 +68,7 @@ var Card = React.createClass({
   },
   render: function() {
     return (
-      <View style={styles.card}>
+      <View {...this._panGesture.panHandlers} style={[styles.card, {marginLeft: this.state.moveX}]}>
         <TextInput style={styles.cardText} value={this.state.title} onChangeText={(text) => this.setState({title: text})} />
       </View>
       );
