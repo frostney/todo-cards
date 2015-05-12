@@ -12,25 +12,7 @@ var {
   View,
 } = React;
 
-var Card = React.createClass({
-  getDefaultProps: function() {
-    return {
-      initialTitle: 'Card'
-    };
-  },
-  getInitialState: function() {
-    return {
-      title: this.props.initialTitle
-    };
-  },
-  render: function() {
-    return (
-      <View style={styles.card}>
-        <Text style={styles.cardText}>{this.state.title}</Text>
-      </View>
-      );
-  }
-});
+var Card = require('./Card');
 
 var TodoCards = React.createClass({
   render: function() {
@@ -59,20 +41,6 @@ var styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
   },
-  card: {
-    backgroundColor: 'white',
-    borderRadius: 4,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    width: 125,
-    height: 125,
-    margin: 8,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  cardText: {
-    fontSize: 20
-  }
 });
 
 AppRegistry.registerComponent('TodoCards', () => TodoCards);
