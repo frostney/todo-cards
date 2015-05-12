@@ -37,14 +37,7 @@ var TodoCards = React.createClass({
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
+          Completed tasks (0)
         </Text>
         <Card />
         <Card />
@@ -62,22 +55,17 @@ var styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   welcome: {
-    fontSize: 20,
+    fontSize: 16,
     textAlign: 'center',
     margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
   card: {
     backgroundColor: 'white',
     borderRadius: 4,
     borderWidth: 1,
     borderColor: '#ccc',
-    width: 133,
-    height: 133,
+    width: 125,
+    height: 125,
     margin: 8,
     justifyContent: 'center',
     alignItems: 'center'
