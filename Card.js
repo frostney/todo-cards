@@ -9,6 +9,8 @@ var {
   PanResponder,
 } = React;
 
+var Dimensions = require('Dimensions').get('window');
+
 var Card = React.createClass({
   getDefaultProps: function() {
     return {
@@ -67,8 +69,13 @@ var Card = React.createClass({
     });
   },
   render: function() {
+    var panStyles = {};
+
+    panStyles['marginLeft'] = this.state.moveX;
+    panStyles['opacity'] = 1 - (Math.abs(this.state.moveX) / (Dimensions.width / 2));
+
     return (
-      <View {...this._panGesture.panHandlers} style={[styles.card, {marginLeft: this.state.moveX}]}>
+      <View {...this._panGesture.panHandlers} style={[styles.card, panStyles]}>
         <TextInput style={styles.cardText} value={this.state.title} onChangeText={(text) => this.setState({title: text})} />
       </View>
       );
