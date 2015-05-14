@@ -33,30 +33,17 @@ var Card = React.createClass({
       onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
 
       onPanResponderGrant: (evt, gestureState) => {
-        // The guesture has started. Show visual feedback so the user knows
-        // what is happening!
-
-        // gestureState.{x,y}0 will be set to zero now
-
         this.setState({
           touched: true
         });
       },
       onPanResponderMove: (evt, gestureState) => {
-        // The most recent move distance is gestureState.move{X,Y}
-
-        // The accumulated gesture distance since becoming responder is
-        // gestureState.d{x,y}
-
         this.setState({
           moveX: gestureState.dx
         });
       },
       onPanResponderTerminationRequest: (evt, gestureState) => true,
       onPanResponderRelease: (evt, gestureState) => {
-        // The user has released all touches while this view is the
-        // responder. This typically means a gesture has succeeded
-
         this.setState({
           moveX: 0,
           touched: false
