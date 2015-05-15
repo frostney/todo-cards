@@ -11,6 +11,8 @@ var {
 
 var Dimensions = require('Dimensions').get('window');
 
+var Store = require('./Store');
+
 var Card = React.createClass({
   getDefaultProps: function() {
     return {
@@ -44,6 +46,10 @@ var Card = React.createClass({
       },
       onPanResponderTerminationRequest: (evt, gestureState) => true,
       onPanResponderRelease: (evt, gestureState) => {
+        if (this.state.moveX > 200) {
+          Store.add(this.state.title);
+        }
+
         this.setState({
           moveX: 0,
           touched: false

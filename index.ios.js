@@ -15,11 +15,16 @@ var {
 var Card = require('./Card');
 
 var TodoCards = React.createClass({
+  getInitialState: function() {
+    return {
+      completed: 0
+    }
+  },
   render: function() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Completed tasks (0)
+          Completed tasks ({this.state.completed})
         </Text>
         <Card />
         <Card />
