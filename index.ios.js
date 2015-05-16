@@ -13,12 +13,20 @@ var {
 } = React;
 
 var Card = require('./Card');
+var Dispatcher = require('./Dispatcher');
 
 var TodoCards = React.createClass({
   getInitialState: function() {
     return {
       completed: 0
     }
+  },
+  componentDidMount: function() {
+    Dispatcher.on('completed', items => {
+      this.setState({
+        completed: items.length
+      });
+    });
   },
   render: function() {
     return (
