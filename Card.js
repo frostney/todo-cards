@@ -46,8 +46,8 @@ var Card = React.createClass({
       },
       onPanResponderTerminationRequest: (evt, gestureState) => true,
       onPanResponderRelease: (evt, gestureState) => {
-        if (this.state.moveX > 200) {
-          Store.add(this.state.title);
+        if (this.state.moveX > 180) {
+          Store.complete(this.state.title);
         }
 
         this.setState({
