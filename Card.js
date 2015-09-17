@@ -22,7 +22,7 @@ var Card = React.createClass({
   getInitialState: function() {
     return {
       title: this.props.initialTitle,
-      touched: true,
+      touched: false,
       moveX: 0
     };
   },
@@ -48,6 +48,10 @@ var Card = React.createClass({
       onPanResponderRelease: (evt, gestureState) => {
         if (this.state.moveX > 180) {
           Store.complete(this.state.title);
+
+          this.setState({
+            title: 'Card'
+          });
         }
 
         this.setState({
@@ -67,6 +71,10 @@ var Card = React.createClass({
     panStyles['marginLeft'] = this.state.moveX;
     panStyles['opacity'] = 1 - (Math.abs(this.state.moveX) / (Dimensions.width / 2));
 
+    if (this.state.touched) {
+      panStyles['backgroundColor'] = '#f8f8f8';
+    }
+
     return (
       <View {...this._panGesture.panHandlers} style={[styles.card, panStyles]}>
         <TextInput style={styles.cardText} value={this.state.title} onChangeText={(text) => this.setState({title: text})} />
@@ -85,11 +93,14 @@ var styles = StyleSheet.create({
     height: 125,
     margin: 8,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    textAlign: 'center'
   },
   cardText: {
   	flex: 1,
-    fontSize: 20
+    fontSize: 20,
+    justifyContent: 'center',
+    textAlign: 'center'
   }
 });
 
